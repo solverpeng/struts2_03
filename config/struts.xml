@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="default" namespace="/" extends="struts-default">
+
+        <action name="testResultRedirect" class="com.solverpeng.struts2.ResultHandlerAction" method="redirect">
+            <result type="redirect">/index.jsp</result>
+        </action>
+
+        <action name="testResultDispatcher" class="com.solverpeng.struts2.ResultHandlerAction" method="actionMethod">
+            <result type="chain">
+                <param name="actionName">resultHandlerAction2</param>
+                <param name="namespace">/</param>
+            </result>
+        </action>
+
+        <action name="resultHandlerAction2" class="com.solverpeng.struts2.ResultHandlerAction2" method="action2Method">
+            <result>/WEB-INF/views/success.jsp</result>
+        </action>
+        
+        <action name="testRedirectAction" class="com.solverpeng.struts2.ResultHandlerAction" method="redirectAction">
+            <result type="redirectAction">
+                <param name="actionName">handlerAction2</param>
+                <param name="namespace">/</param>
+            </result>
+        </action>
+
+        <action name="handlerAction2" class="com.solverpeng.struts2.ResultHandlerAction2" method="redirectTargetMethod">
+            <result>/WEB-INF/views/success.jsp</result>
+        </action>
+        
+        <action name="index">
+            <result type="redirectAction">
+                <param name="actionName">HelloWorld</param>
+                <param name="namespace">/example</param>
+            </result>
+        </action>
+
+        <action name="testFreemarker" class="com.solverpeng.struts2.ResultHandlerAction3" method="testFreemarker">
+            <result type="freemarker">/WEB-INF/ftls/test-freemarker.ftl</result>
+        </action>
+
+        <action name="testVelocity" class="com.solverpeng.struts2.ResultHandlerAction3" method="testVelocity">
+            <result type="velocity">/WEB-INF/vms/test-velocity.vm</result>
+        </action>
+    </package>
+</struts>
